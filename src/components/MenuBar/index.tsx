@@ -5,17 +5,16 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
-
-const pages = ["Área de Trabalho"];
-const settings = ["Perfil", "Conta", "Sair"];
+import MenuMobile from "./MenuMobile";
+import MenuDesktop from "./MenuDesktop";
+import { pages, settings } from "./provider";
+import useStyles from "./styles";
 
 const MenuBar = ({ theme, setMode }: any) => {
   const toggleTheme = () => {
@@ -46,89 +45,36 @@ const MenuBar = ({ theme, setMode }: any) => {
 
   const currentMode = theme.palette.mode;
 
+  const classes = useStyles();
+
   return (
-    <AppBar position="static" sx={{ background: "rgba(255,255,255, 0.4)" }}>
+    <AppBar position="static" className={classes.appBar}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontSize: "3em",
-              fontWeight: "bold",
-            }}
-          >
-            Note
-          </Typography>
+          <MenuMobile
+            handleOpenNavMenu={handleOpenNavMenu}
+            anchorElNav={anchorElNav}
+            handleCloseNavMenu={handleCloseNavMenu}
+            pages={pages}
+          />
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            Note
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+          <MenuDesktop pages={pages} handleCloseNavMenu={handleCloseNavMenu} />
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box className={classes.box}>
             <Tooltip title="Configurações da conta">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton
+                onClick={handleOpenUserMenu}
+                className={classes.avatarButton}
+              >
                 <Avatar
-                  sx={{ background: "#E7970D" }}
+                  className={classes.avatar}
                   alt="Ashiley"
                   src="/static/images/avatar/2.jpg"
                 />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
+              className={classes.menu}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -150,7 +96,8 @@ const MenuBar = ({ theme, setMode }: any) => {
               ))}
             </Menu>
           </Box>
-          <IconButton onClick={toggleTheme} sx={{ marginLeft: "10px" }}>
+
+          <IconButton onClick={toggleTheme} className={classes.lightButton}>
             {currentMode === "dark" ? (
               <LightbulbIcon />
             ) : (
