@@ -1,33 +1,16 @@
 import { Container, Grid, Typography, Divider } from "@mui/material";
 import { Fragment } from "react";
 import CardMain from "../../components/CardMain";
-
-const cards = [
-  {
-    title: "Trabalho",
-    description: "Notas para controle e distribuição de tarefas do trabalho",
-    link: "desktop",
-  },
-  {
-    title: "Faculdade",
-    description:
-      "Notas para controle e distribuição de tarefas de um trabalho da faculdade",
-    link: "desktop",
-  },
-];
+import cards from "./provider";
+import useStyles from "./styles";
 
 const Home = () => {
+  const classes = useStyles();
+
   return (
     <Fragment>
-      <Container maxWidth="xl" sx={{ marginTop: "30px" }}>
-        <Typography
-          sx={{
-            fontWeight: "200",
-            fontSize: "2em",
-          }}
-        >
-          Áreas de trabalho
-        </Typography>
+      <Container maxWidth="xl" className={classes.container}>
+        <Typography className={classes.mainTitle}>Áreas de trabalho</Typography>
         <Divider />
 
         <Grid container>
