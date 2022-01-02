@@ -1,12 +1,11 @@
-import { PaletteMode } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useState } from "react";
 import Routes from "./pages/Routes";
 import getDesignTokens from "./styles/Theme";
 import Menu from "./components/Menu";
+import useLocalState from "./storage/useLocalState";
 
 const App = () => {
-  const [mode, setMode] = useState<PaletteMode>("light");
+  const [mode, setMode] = useLocalState("noteTheme", "dark");
   const theme = createTheme(getDesignTokens(mode));
 
   return (
