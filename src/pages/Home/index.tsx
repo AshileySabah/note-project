@@ -1,16 +1,20 @@
-import {
-  Container,
-  Grid,
-  Card,
-  CardMedia,
-  CardActions,
-  CardContent,
-  Typography,
-  Button,
-  Divider,
-} from "@mui/material";
+import { Container, Grid, Typography, Divider } from "@mui/material";
 import { Fragment } from "react";
-import ShareIcon from "@mui/icons-material/Share";
+import CardMain from "../../components/CardMain";
+
+const cards = [
+  {
+    title: "Trabalho",
+    description: "Notas para controle e distribuição de tarefas do trabalho",
+    link: "desktop",
+  },
+  {
+    title: "Faculdade",
+    description:
+      "Notas para controle e distribuição de tarefas de um trabalho da faculdade",
+    link: "desktop",
+  },
+];
 
 const Home = () => {
   return (
@@ -27,59 +31,13 @@ const Home = () => {
         <Divider />
 
         <Grid container>
-          <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
-            <Card
-              sx={{ maxWidth: 345, background: "#E6E5E7", marginTop: "20px" }}
-            >
-              <CardContent>
-                <Typography variant="h5">Trabalho</Typography>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://cdn.diferenca.com/imagens/pessoas-no-trabalho-cke.jpg"
-                  alt="green iguana"
-                />
-                <Typography variant="body2" color="text.secondary">
-                  Notas para controle e distribuição de tarefas do trabalho
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">
-                  <ShareIcon /> Compartilhe
-                </Button>
-                <Button size="small" variant="contained">
-                  Acessar
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
-            <Card
-              sx={{ maxWidth: 345, background: "#E6E5E7", marginTop: "20px" }}
-            >
-              <CardContent>
-                <Typography variant="h5">Faculdade</Typography>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://cdn.diferenca.com/imagens/pessoas-no-trabalho-cke.jpg"
-                  alt="green iguana"
-                />
-                <Typography variant="body2" color="text.secondary">
-                  Notas para controle e distribuição de tarefas de um trabalho
-                  da faculdade
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">
-                  <ShareIcon /> Compartilhe
-                </Button>
-                <Button size="small" variant="contained">
-                  Acessar
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
+          {cards.map(({ title, description, link }) => {
+            return (
+              <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
+                <CardMain title={title} description={description} link={link} />
+              </Grid>
+            );
+          })}
         </Grid>
       </Container>
     </Fragment>
