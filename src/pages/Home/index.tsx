@@ -13,7 +13,7 @@ const Home = () => {
         <Typography className={classes.mainTitle}>Áreas de trabalho</Typography>
         <Divider />
 
-        <Grid container>
+        <Grid container spacing={3}>
           {cards.map(({ title, description, link }) => {
             return (
               <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
