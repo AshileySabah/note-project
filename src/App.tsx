@@ -1,8 +1,9 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Routes from "./pages/Routes";
 import getDesignTokens from "./styles/Theme";
-import Menu from "./components/Menu";
+import MenuBar from "./components/MenuBar";
 import useLocalState from "./storage/useLocalState";
+import Background from "./components/Background";
 
 const App = () => {
   const [mode, setMode] = useLocalState("noteTheme", "dark");
@@ -10,8 +11,10 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Menu theme={theme} setMode={setMode} />
-      <Routes />
+      <Background theme={theme}>
+        <MenuBar theme={theme} setMode={setMode} />
+        <Routes />
+      </Background>
     </ThemeProvider>
   );
 };
