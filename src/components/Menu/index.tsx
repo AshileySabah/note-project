@@ -4,9 +4,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 const Menu = ({ theme, setMode }: any) => {
   const toggleTheme = () => {
-    setMode((prevMode: PaletteMode) =>
-      prevMode === "light" ? "dark" : "light"
-    );
+    setMode((prevMode: any) => (prevMode === "light" ? "dark" : "light"));
   };
 
   return (
