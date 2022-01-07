@@ -1,5 +1,5 @@
 import { Container, Grid, Typography, Divider } from "@mui/material";
-import { Fragment } from "react";
+import React from "react";
 import CardMain from "../../components/CardMain";
 import cards from "./provider";
 import useStyles from "./styles";
@@ -8,7 +8,7 @@ const Home = () => {
   const classes = useStyles();
 
   return (
-    <Fragment>
+    <React.Fragment>
       <Container maxWidth="xl" className={classes.container}>
         <Typography className={classes.mainTitle}>Áreas de trabalho</Typography>
         <Divider />
@@ -23,7 +23,7 @@ const Home = () => {
           })}
         </Grid>
       </Container>
-    </Fragment>
+    </React.Fragment>
   );
 };
 

@@ -1,13 +1,22 @@
+import React from "react";
 import { Typography, Box, IconButton, MenuItem, Menu } from "@mui/material";
 import { Fragment } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import { pages } from "../provider";
 
-const MenuMobile = ({
-  handleOpenNavMenu,
-  anchorElNav,
-  handleCloseNavMenu,
-  pages,
-}: any) => {
+const MenuMobile = () => {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null
+  );
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   return (
     <Fragment>
       <Typography
@@ -55,7 +64,7 @@ const MenuMobile = ({
             </MenuItem>
           ))}
         </Menu>
-      </Box>{" "}
+      </Box>
     </Fragment>
   );
 };
