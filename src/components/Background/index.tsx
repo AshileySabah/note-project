@@ -11,7 +11,7 @@ const Background = ({ children, theme }: any) => {
       sx={{
         background: style,
         borderRadius: "0",
-        height: "100vh",
+        minHeight: "100vh",
       }}
     >
       {children}
