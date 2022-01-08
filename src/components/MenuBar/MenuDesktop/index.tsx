@@ -1,7 +1,9 @@
+import React from "react";
 import { Typography, Box, Button } from "@mui/material";
 import { Fragment } from "react";
+import { pages } from "../provider";
 
-const MenuDesktop = ({ pages, handleCloseNavMenu }: any) => {
+const MenuDesktop = () => {
   return (
     <Fragment>
       <Typography
@@ -14,11 +16,7 @@ const MenuDesktop = ({ pages, handleCloseNavMenu }: any) => {
       </Typography>
       <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
         {pages.map((page: any) => (
-          <Button
-            key={page}
-            onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: "white", display: "block" }}
-          >
+          <Button sx={{ my: 2, color: "white", display: "block" }}>
             {page}
           </Button>
         ))}
